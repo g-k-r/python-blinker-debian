@@ -1,0 +1,31 @@
+Source: blinker
+Maintainer: Jason Kirtland <jek@discorporate.us>
+Section: python
+Priority: optional
+Build-Depends: python-all (>= 2.6.6-3), debhelper (>= 7)
+Standards-Version: 3.9.1
+
+Package: python-blinker
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Fast, simple object-to-object and broadcast signaling
+ Blinker
+ =======
+ .
+ Blinker provides a fast dispatching system that allows any number of
+ interested parties to subscribe to events, or "signals".
+ .
+ Signal receivers can subscribe to specific senders or receive signals
+ sent by any sender.
+ .
+   >>> from blinker import signal
+   >>> started = signal('round-started')
+   >>> def each(round):
+   ...     print "Round %s!" % round
+   ...
+   >>> started.connect(each)
+ .
+   >>> def round_two(round):
+   ...     print "This is round two."
+   ...
+   >>> started.connect(round_two, sender=2)
